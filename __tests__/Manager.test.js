@@ -7,11 +7,12 @@ test('Check if a Manager object is created', () => {
 });
 
 test('Check if parameters are being used properly', () => {
-    const manager = new Manager('Philip', '35', 'phil.boss@iamtheboss.com');
+    const manager = new Manager('Philip', '35', 'phil.boss@iamtheboss.com', '101');
 
     expect(manager.name).toBe('Philip');
     expect(manager.id).toBe('35');
     expect(manager.email).toBe('phil.boss@iamtheboss.com');
+    expect(manager.officeNumber).toBe('101');
 });
 
 test('Gets the role of the Manager', () => {
