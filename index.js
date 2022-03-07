@@ -11,7 +11,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-const myTeam = {};
+const myTeam = [];
 
 // Inquirer Questions; Starts program; Add Manager 
 const addManager = () => {
