@@ -33,7 +33,7 @@
   ## Credits
   - Built by: Bryan Durushia
 
-  - Technologies used: Node.js, NPM, Inquirer, Jest, Bootstrap.
+  - Technologies used: [Node.js](https://nodejs.org/en/about/), [Node Package Manager](https://docs.npmjs.com/about-npm), [NPM Inquirer Package](https://www.npmjs.com/package/inquirer), [NPM Jest Package](https://www.npmjs.com/package/jest), [Bootstrap](https://getbootstrap.com). 
 
   - [https://www.youtube.com/watch?v=vDJpGenyHaA](https://www.youtube.com/watch?v=vDJpGenyHaA)
 
