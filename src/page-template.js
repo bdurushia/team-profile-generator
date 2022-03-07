@@ -1,0 +1,5 @@
+// const generatePage = () => {
+//     const {
+
+//     } = templateData;
+// }
