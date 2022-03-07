@@ -8,10 +8,10 @@ const { writeFile, copyFile} = require('./utils/generate-site');
 
 // import class Objects
 const Manager = require('./lib/Manager');
-const Ingineer = require('./lib/Engineer');
+const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-const myTeam = [];
+const myTeam = {};
 
 // Inquirer Questions; Starts program; Add Manager 
 const addManager = () => {
@@ -72,21 +72,231 @@ const addManager = () => {
         }
     ])
     .then(answers => {
-        const manager = new Manager(answers.managerName, 
+        const manager = new Manager(
+            answers.managerName, 
             parseInt(answers.managerId), 
             answers.managerEmail, 
             parseInt(answers.officeNumber), 
             answers.manager);
 
         myTeam.push(manager);
+        addMember();
         // function to ask if they'd like to add another member to their team
-    })
+    });
 };
 
-// Prompt user, ask if you'd like to add another member, choose type
+// Prompt user, ask if they'd like to add another member, choose role
+function addMember() {
+    return inquirer.prompt([
+        {
+            type: 'confirm',
+            name: 'confirmAddMember',
+            message: 'Would you like to add another team member?',
+            default: true
+        },
+        {
+            type: 'list',
+            name: 'memberRole',
+            message: 'Choose the role of the your member:',
+            choices: ['Engineer', 'Intern'],      
+            when: ({ confirmAddMember }) => {
+                if (confirmAddMember) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+    ])
+    .then(choice => {
+        let role = choice.memberRole;
+        choice: if (role === 'Engineer') {
+            addEngineer();
+            break choice;
+        } else if (role === 'Intern') {
+            addIntern();
+            break choice;
+        } else {
+            buildMyTeam();
+            break choice;
+        }
+    });
+};
 
 // Inquirer Questions; Add Engineer
+const addEngineer = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'engineerName',
+            message: 'ENGINEER NAME - Enter the name of your engineer:',
+            validate: answer => {
+                if (answer) {
+                    return true;
+                } else {
+                    console.log('You must enter the name of your engineer!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'engineerId',
+            message: 'ENGINEER ID (number) - Enter the ID for the engineer:',
+            validate: answer => {
+                if (isNaN(answer) || !answer) {
+                    console.log('You must enter an ID, and it must be a number!');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'engineerEmail',
+            message: 'ENGINEER EMAIL - Enter an Email address for the engineer:',
+            validate: answer => {
+                let emailFormat = answer.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/); // Found email validation formatting here: https://stackoverflow.com/questions/46155/whats-the-best-way-to-validate-an-email-address-in-javascript
+                if (emailFormat) {
+                    return true;
+                } else {
+                    console.log('You must enter a valid email address!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'githubUsername',
+            message: "GITHUB USERNAME - Enter the engineer's GitHub Username:",
+            validate: answer => {
+                if (answer) {
+                    return true;
+                } else {
+                    console.log('You must enter the GitHub username for your engineer!');
+                    return false;
+                }
+            }
+        }
+    ])
+    .then(answers => {
+        const engineer = new Engineer(
+            answers.engineerName, 
+            parseInt(answers.engineerId), 
+            answers.engineerEmail, 
+            answers.githubUsername, 
+            answers.engineer);
+
+        myTeam.push(engineer);
+        addMember();
+    });
+};
 
 // Inquirer Questions; Add Intern
+const addIntern = () => {
+    return inquirer.prompt([
+        {
+            type: 'input',
+            name: 'internName',
+            message: 'INTERN NAME - Enter the name of your intern:',
+            validate: answer => {
+                if (answer) {
+                    return true;
+                } else {
+                    console.log('You must enter the name of your intern!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'internId',
+            message: 'INTERN ID (number) - Enter the ID for the intern:',
+            validate: answer => {
+                if (isNaN(answer) || !answer) {
+                    console.log('You must enter an ID, and it must be a number!');
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'internEmail',
+            message: 'INTERN EMAIL - Enter an Email address for the intern:',
+            validate: answer => {
+                let emailFormat = answer.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/); // Found email validation formatting here: https://stackoverflow.com/questions/46155/whats-the-best-way-to-validate-an-email-address-in-javascript
+                if (emailFormat) {
+                    return true;
+                } else {
+                    console.log('You must enter a valid email address!');
+                    return false;
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'schoolName',
+            message: "SCHOOL/UNIVERSITY NAME - Enter the name of the intern's school/university:",
+            validate: answer => {
+                if (answer) {
+                    return true;
+                } else {
+                    console.log("You must enter the name for your intern's school!");
+                    return false;
+                }
+            }
+        }
+    ])
+    .then(answers => {
+        const intern = new Intern(
+            answers.internName, 
+            parseInt(answers.internId), 
+            answers.internEmail, 
+            answers.schoolName, 
+            answers.intern);
+
+        myTeam.push(intern);
+        addMember();
+    });
+};
+
+function buildMyTeam() {
+    console.log(myTeam);
+}
 
 addManager();
+
+// mock data
+// const mockData = {
+//     Manager: {
+//         name: 'James',
+//         id: 40032340,
+//         email: 'james@gmail.com',
+//         officeNumber: 102,
+//         role: 'Manager'
+//     },
+//     Engineer: {
+//         name: 'Ava',
+//         id: 99893045,
+//         email: 'ava.johnson@gmail.com',
+//         github: 'avajohnson',
+//         role: 'Engineer'
+//     },
+//     Engineer: {
+//         name: 'HyoJo Koo',
+//         id: 93405245,
+//         email: 'k.hyojoo@gmail.com',
+//         github: 'khyojoo',
+//         role: 'Engineer'
+//     },
+//     Intern: {
+//         name: 'Sarah',
+//         id: 8743989345,
+//         email: 'saratheintern@uofme.edu',
+//         school: 'University of Minnesota',
+//         role: 'Intern'
+//     }
+// }
