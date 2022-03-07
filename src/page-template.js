@@ -1,5 +1,74 @@
 const generatePage = (myTeam) => {
     let members = '';
+
+    for (let i = 0; i < myTeam.length; i++) {
+        if (myTeam[i].role === 'Manager') {
+            members += `
+            <div class="card card-style m-4" style="width: 20rem">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        ${myTeam[i].name}
+                    </h5>
+                    <h6 class="card-subtitle mb-2">
+                        <i class="fas fa-mug-hot mx-2"></i>${myTeam[i].role}
+                    </h6>
+                </div>
+                <div class="card-body py-5">
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">ID: ${myTeam[i].id}</li>
+                          <li class="list-group-item">Email: <a href="mailto:${myTeam[i].email}">${myTeam[i].email}</a></li>
+                          <li class="list-group-item">Office Number: ${myTeam[i].officeNumber}</li>
+                        </ul>
+                      </div>
+                </div>
+            </div>`
+        } else if (myTeam[i].role === 'Engineer') {
+            members += `
+            <div class="card card-style m-4" style="width: 20rem">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        ${myTeam[i].name}
+                    </h5>
+                    <h6 class="card-subtitle mb-2">
+                        <i class="fas fa-glasses mx-2"></i>${myTeam[i].role}
+                    </h6>
+                </div>
+                <div class="card-body py-5">
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">ID: ${myTeam[i].id}</li>
+                          <li class="list-group-item">Email: <a href="mailto:${myTeam[i].email}">${myTeam[i].email}</a></li>
+                          <li class="list-group-item">GitHub Profile: <a href="https://github.com/${myTeam[i].github}">${myTeam[i].github}</a></li>
+                        </ul>
+                      </div>
+                </div>
+            </div>`
+        } else { // Intern HTML
+            members += `
+            <div class="card card-style m-4" style="width: 20rem">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        ${myTeam[i].name}
+                    </h5>
+                    <h6 class="card-subtitle mb-2">
+                        <i class="fas fa-user-graduate mx-2"></i>${myTeam[i].role}
+                    </h6>
+                </div>
+                <div class="card-body py-5">
+                    <div class="card" style="width: 18rem;">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">ID: ${myTeam[i].id}</li>
+                          <li class="list-group-item">Email: <a href="mailto:${myTeam[i].email}">${myTeam[i].email}</a></li>
+                          <li class="list-group-item">University: ${myTeam[i].school}</li>
+                        </ul>
+                      </div>
+                </div>
+            </div>`
+        }
+        
+    }
+
     let pageTemplate = `
         <!DOCTYPE html>
         <html lang="en">
@@ -41,76 +110,7 @@ const generatePage = (myTeam) => {
             
             <script src="../index.js"></script>
         </body>
-        </html>`
-    ;
-
-    for (let i = 0; i < myTeam.length; i++) {
-        if (myTeam[i].role === 'Manager') {
-            members += `
-            <div class="card card-style m-4" style="width: 20rem">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        ${myTeam[i].name}
-                    </h5>
-                    <h6 class="card-subtitle mb-2">
-                        <i class="fas fa-mug-hot mx-2"></i>${myTeam[i].role}
-                    </h6>
-                </div>
-                <div class="card-body py-5">
-                    <div class="card" style="width: 18rem;">
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item">ID: ${myTeam[i].id}</li>
-                          <li class="list-group-item">Email: <a href="mailto:${myTeam[i].email}">${myTeam[i].email}</a></li>
-                          <li class="list-group-item">Office Number: ${myTeam[i].officeNumber}</li>
-                        </ul>
-                      </div>
-                </div>
-            </div>`
-        } else if (myTeam[i].role === 'Engineer') {
-            members += `
-            <div class="card card-style m-4" style="width: 20rem">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        ${myTeam[i].name}
-                    </h5>
-                    <h6 class="card-subtitle mb-2">
-                        <i class="far fa-glasses mx-2"></i>${myTeam[i].role}
-                    </h6>
-                </div>
-                <div class="card-body py-5">
-                    <div class="card" style="width: 18rem;">
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item">ID: ${myTeam[i].id}</li>
-                          <li class="list-group-item">Email: <a href="mailto:${myTeam[i].email}">${myTeam[i].email}</a></li>
-                          <li class="list-group-item">GitHub Profile: <a href="https://github.com/${myTeam[i].github}">${myTeam[i].github}</a></li>
-                        </ul>
-                      </div>
-                </div>
-            </div>`
-        } else { // Intern HTML
-            members += `
-            <div class="card card-style m-4" style="width: 20rem">
-                <div class="card-header">
-                    <h5 class="card-title">
-                        ${myTeam[i].name}
-                    </h5>
-                    <h6 class="card-subtitle mb-2">
-                        <i class="far fa-graduation-cap mx-2"></i>${myTeam[i].role}
-                    </h6>
-                </div>
-                <div class="card-body py-5">
-                    <div class="card" style="width: 18rem;">
-                        <ul class="list-group list-group-flush">
-                          <li class="list-group-item">ID: ${myTeam[i].id}</li>
-                          <li class="list-group-item">Email: <a href="mailto:${myTeam[i].email}">${myTeam[i].email}</a></li>
-                          <li class="list-group-item">University: ${myTeam[i].school}</li>
-                        </ul>
-                      </div>
-                </div>
-            </div>`
-        }
-        
-    }
+        </html>`;
 
     return pageTemplate;
 };

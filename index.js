@@ -4,7 +4,6 @@ const fs = require('fs');
 
 // import render page modules
 const generatePage = require('./src/page-template');
-const { writeFile, copyFile} = require('./utils/generate-site');
 
 // import class Objects
 const Manager = require('./lib/Manager');
@@ -117,7 +116,7 @@ function addMember() {
             addIntern();
             break choice;
         } else {
-            buildMyTeam();
+            buildTeam();
             break choice;
         }
     });
@@ -263,40 +262,25 @@ const addIntern = () => {
     });
 };
 
-function buildMyTeam() {
-    console.log(myTeam);
+function buildTeam() {
+    fs.writeFileSync('./dist/index.html', generatePage(myTeam), err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            return;
+        }
+    });
+
+    fs.copyFile('./src/style.css', './dist/style.css', err => {
+        if (err) {
+            reject (err);
+            return;
+        } else {
+            console.log('Success! File is index.html, written to the /dist folder.');
+            return console.log('Success! File copied to the /dist folder.');
+        }
+    });
 }
 
 addManager();
-
-// mock data
-// const mockData = {
-//     Manager: {
-//         name: 'James',
-//         id: 40032340,
-//         email: 'james@gmail.com',
-//         officeNumber: 102,
-//         role: 'Manager'
-//     },
-//     Engineer: {
-//         name: 'Ava',
-//         id: 99893045,
-//         email: 'ava.johnson@gmail.com',
-//         github: 'avajohnson',
-//         role: 'Engineer'
-//     },
-//     Engineer: {
-//         name: 'HyoJo Koo',
-//         id: 93405245,
-//         email: 'k.hyojoo@gmail.com',
-//         github: 'khyojoo',
-//         role: 'Engineer'
-//     },
-//     Intern: {
-//         name: 'Sarah',
-//         id: 8743989345,
-//         email: 'saratheintern@uofme.edu',
-//         school: 'University of Minnesota',
-//         role: 'Intern'
-//     }
-// }
