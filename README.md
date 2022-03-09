@@ -18,6 +18,10 @@
 
   ## Installation
   Node.js must be installed to run this application. Once you clone the repo, open a new terminal in the application's index directory. Run the command `npm install` to install node modules and the dependencies(inquirer, jest). To run the application, run the command `node index`. Follow the prompts and fill them out accordingly. The generated html and css files will be located in the `/dist` folder.
+  
+  - [Video Walkthrough - Clone & Install NPM](https://drive.google.com/file/d/1WYbwPvTXwWsTmprA2oMwpOS3hGugDlss/view?usp=sharing)
+  - [Video Walktrhough - Run Test Suites](https://drive.google.com/file/d/1eROS_Ceo-enm4LSsyFkIfHdEjeynWVOh/view?usp=sharing)
+  - [Video Walkthrough - Run Application](https://drive.google.com/file/d/1hCRCIftxQCif2IDTzn4plZF8QcI6Xywk/view?usp=sharing)
 
   ## Usage
   For an example, say I'd like to build a web profile for future clients or employees to view my team members and find some of their relavent information, like email addresses, GitHub profiles, position role, office number, etc.
