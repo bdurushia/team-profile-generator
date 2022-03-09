@@ -32,7 +32,7 @@
   Email me if you are interested in contributing to this project.
 
   ## Tests
-  Tests built for Employee class, Manager class, Engineer class, and Intern class functionality.
+  Tests built for Employee class, Manager class, Engineer class, and Intern class functionality. Use `npm test` in the command line to run all 4 test suites (17 tests total).
 
   ## Credits
   - Built by: Bryan Durushia
