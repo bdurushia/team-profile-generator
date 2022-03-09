@@ -17,7 +17,7 @@
   - [Questions](#questions)
 
   ## Installation
-  [Node.js](https://nodejs.org/en/download/) must be installed to run this application. Once you clone the repo, open a new terminal in the application's index directory. Run the command `npm install` to install node modules and the dependencies(inquirer, jest). To run the application, run the command `node index`. Follow the prompts and fill them out accordingly. The generated html and css files will be located in the `/dist` folder.
+  [Node.js](https://nodejs.org/en/download/) must be installed to run this application. Once you clone the repo, open a new terminal in the application's primary directory where the index.js file exists. Run the command `npm install` ( or `npm i` for short) to install node modules and the dependencies(inquirer, jest). To run the application, run the command `node index.js` or `node index` for short. Follow the prompts and fill them out accordingly. The generated html and css files will be located in the `/dist` folder. You can then copy the two files to wherever you'd like them to be host your team's profile.
   
   - [Video Walkthrough - Clone & Install NPM](https://drive.google.com/file/d/1WYbwPvTXwWsTmprA2oMwpOS3hGugDlss/view?usp=sharing)
   - [Video Walktrhough - Run Test Suites](https://drive.google.com/file/d/1eROS_Ceo-enm4LSsyFkIfHdEjeynWVOh/view?usp=sharing)
